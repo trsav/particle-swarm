@@ -1,5 +1,4 @@
 # Particle Swarm Optimization within Python
-Simulated Annealing is implimented over an arbitary number of dimensions, and included are utilities for plotting the optimization trajectory as well as function value over time.
 
 ## Particle Swarm Background
 
