@@ -48,8 +48,8 @@ particleswarm(f,bounds,p,w,c1,c2,vmax,tol)
 ```
 Produces the following outputs:
 ```
-Optimum at:  [0.99934111 0.99912605 0.99834905 0.99673156 0.993232  ]
-Function at optimum:  4.113161417643173e-05
+Optimum at:  [0.99997687 0.99997492 0.99985836 0.99975199 0.99954017]
+ Function at optimum:  1.2193992644178545e-06
 
 ```
 
