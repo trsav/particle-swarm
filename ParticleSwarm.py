@@ -15,7 +15,7 @@ initiation=ParticleSwarmUtility.initiation
 withinbounds=ParticleSwarmUtility.withinbounds
 Rosenbrock=ParticleSwarmUtility.Rosenbrock
 
-def particleswarm(f,bounds,p,w,c1,c2):
+def particleswarm(f,bounds,p,w,c1,c2,vmax,tol):
     '''
     DESCRIPTION
     see https://en.wikipedia.org/wiki/Particle_swarm_optimization
@@ -27,6 +27,7 @@ def particleswarm(f,bounds,p,w,c1,c2):
     w           :adjustable parameter
     c1          :adjustable parameter
     c2          :adjustable parameter
+    vmax        :maximum particle velocity
     
     OUTPUTS
     swarm_best  : coordinates of optimal solution, with regards to exit
@@ -35,12 +36,14 @@ def particleswarm(f,bounds,p,w,c1,c2):
     d,particle_pos, particle_best, swarm_best, particle_velocity\
     = initiation(f,bounds,p) #initializing various arrays
     old_swarm_best=[0]*d
-    while abs(f(old_swarm_best)-f(swarm_best))>0.000001: #exit condition 
+    while abs(f(old_swarm_best)-f(swarm_best))>tol: #exit condition 
         for i in range(p): #iterates over each particle
             rp,rg=rnd.uniform(0,1,2) #creates two random numbers between 0-1
             particle_velocity[i,:]=w*particle_velocity[i,:]
             particle_velocity[i,:]+=(c1*rp*(particle_best[i,:]-particle_pos[i,:]))
             particle_velocity[i,:]+=(c2*rg*(swarm_best[:]-particle_pos[i,:]))
+            if particle_velocity[i].any() > vmax :
+                particle_velocity[i,:]=0
             #all of the above is regarding updating the particle's velocity
             #with regards to various parameters (swarm_best, p_best etc..)
             particle_pos[i,:]+=particle_velocity[i,:] #updating position
@@ -57,17 +60,19 @@ def particleswarm(f,bounds,p,w,c1,c2):
 
 
 f=Rosenbrock #setting function to be optimized
-dimensions=5 
+dimensions=10
 bounds=[0]*dimensions #creating 5 dimensional bounds
 for i in range(dimensions):
     bounds[i]=[-5,5]
 p=50 #number of particles
-#the three particle swarm parameters:
+#the four particle swarm parameters:
+vmax=4
 w=0.6 
 c1=2.8
 c2=1.3
+tol=0.000000001
 
-particleswarm(f,bounds,p,w,c1,c2)
+particleswarm(f,bounds,p,w,c1,c2,vmax,tol)
                 
                 
                 
