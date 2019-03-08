@@ -9,11 +9,7 @@ import numpy as np
 import copy
 import numpy.random as rnd
 import time
-import ParticleSwarmUtility
-
-initiation=ParticleSwarmUtility.initiation
-withinbounds=ParticleSwarmUtility.withinbounds
-Rosenbrock=ParticleSwarmUtility.Rosenbrock
+import ParticleSwarmUtility as PSU
 
 def particleswarm(f,bounds,p,w,c1,c2,vmax,tol):
     '''
@@ -35,7 +31,7 @@ def particleswarm(f,bounds,p,w,c1,c2,vmax,tol):
                   conditions
     '''
     d,particle_pos, particle_best, swarm_best, particle_velocity\
-    = initiation(f,bounds,p) #initializing various arrays
+    = PSU.initiation(f,bounds,p) #initializing various arrays
     old_swarm_best=[0]*d
     while abs(f(old_swarm_best)-f(swarm_best))>tol: #exit condition 
         for i in range(p): #iterates over each particle
@@ -48,7 +44,7 @@ def particleswarm(f,bounds,p,w,c1,c2,vmax,tol):
             #all of the above is regarding updating the particle's velocity
             #with regards to various parameters (swarm_best, p_best etc..)
             particle_pos[i,:]+=particle_velocity[i,:] #updating position
-            if withinbounds(bounds,particle_pos[i])==False:
+            if PSU.withinbounds(bounds,particle_pos[i])==False:
                 particle_velocity[i,:]=0
             if f(particle_pos[i]) < f(particle_best[i]):
                 particle_best[i,:]=particle_pos[i,:] #checking if new best
@@ -60,20 +56,6 @@ def particleswarm(f,bounds,p,w,c1,c2,vmax,tol):
     return print('Optimum at: ',swarm_best,'\n','Function at optimum: ',f(swarm_best)) 
 
 
-f=Rosenbrock #setting function to be optimized
-dimensions=5
-bounds=[0]*dimensions #creating 5 dimensional bounds
-for i in range(dimensions):
-    bounds[i]=[-5,5]
-p=50 #number of particles
-#the four particle swarm parameters:
-vmax=4
-w=0.6 
-c1=2.8
-c2=1.3
-tol=0.00000001
-
-particleswarm(f,bounds,p,w,c1,c2,vmax,tol)
                 
                 
                 

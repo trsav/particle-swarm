@@ -24,6 +24,20 @@ def Rosenbrock(X):
     f = sum( 100.0*(X[i+1]-X[i]**2)**2 + (1-X[i])**2 for i in range(0,len(X)-1) )
     return f
 
+def Rastrigin(X):
+    '''INPUTS
+    X: arguments of the Rastrigin Function
+    OUTPUTS
+    f : evaluation of the Rastrigin function given the inputs
+    
+    DOMAIN         : [-5.12,5.12]
+    DIMENSIONS     : any
+    GLOBAL MINIMUM : f(x)=0 x=[0,...,0] 
+'''
+    an=10*len(X)
+    f_sum=sum(X[i]**2-(10*np.cos(2*np.pi*X[i]))for i in range(len(X)))
+    return an+f_sum
+
 def initiation(f,bounds,p):
     '''
     INPUTS
