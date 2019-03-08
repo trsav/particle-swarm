@@ -1,7 +1,7 @@
 # Particle Swarm Optimization within Python
 
 ## Particle Swarm Background
-Particle Swarm optimization is first attributed by Kennedy, Eberhar and Shi in their 1995 paper 'Particle Swarm Optimization. It locates the minimum of a function why creating a number of 'particles'. These particles 'know' where their best position has been as well as also knowing the global best position. 
+Particle Swarm optimization is first attributed by Kennedy, Eberhar and Shi in their 1995 paper 'Particle Swarm Optimization. It locates the minimum of a function why creating a number of 'particles'. These particles store their best position has been as well as also storing the global best position. 
 It is this combination of local and global information that gives rise to 'swarm intelligence'.
 
 Within an iteration, a particle will update it's position slightly towards both the swarm best and it's personal best. With eventually the particles converging on the global minimum.
@@ -11,8 +11,15 @@ Within an iteration, a particle will update it's position slightly towards both 
 Currently the algorithm is set to terminate when the difference in the value of the function evaluated at the swarm's best position changes less than a certain tolerance value. 
 This could be changed at a later date to a more 'clever' solution. 
 
-There are also three important parameters (w,c1,c2) that define how much a particle moves towards the swarm best and it's best. There has been much discussion over a 'standard' for these parameters (See Bratton, Kennedy: Defining a Standard for Particle Swarm Optimization (2007)) but in reality each problem will perform better with different conditions. 
+There are also three important parameters (w,c1,c2) that define how much a particle moves towards the swarm best and it's best. 
+There has been much discussion over a 'standard' for these parameters (See Bratton, Kennedy: Defining a Standard for Particle Swarm Optimization (2007)) but in reality each problem will perform better with different conditions. 
 Optimizing these parameters takes the form of a meta-optimization problem.
+
+The 'Topology' of a particle swarm also bears an influence on how the swarm behaves. Here, all particles are 'connected' with each other through their knowledge of the swarm best. A common adaptation to this is that the swarm best is replaced with the the best position of itself and it's two neighbours. It results in a slower convergence, but allows the swarm to not terminate prematurely. 
+
+ <img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/PSOtopology.png" width="400"> Bratton, Kennedy (2007)
+
+It is something that hopefully will be implimented soon here.
 
 ### Prerequisites
 
