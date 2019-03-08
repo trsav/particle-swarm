@@ -18,6 +18,7 @@ Python 3.0 is required. The ParticleSwarmUtility.py file must be in the same dir
     w           :adjustable parameter
     c1          :adjustable parameter
     c2          :adjustable parameter
+    vmax        :maximum particle velocity
     
     OUTPUTS
     swarm_best  : coordinates of optimal solution, with regards to exit
@@ -30,17 +31,20 @@ With the ParticleSwarmUtility.py and ParticleSwarm.py files within the same dire
 Running the following:
 ```
 f=Rosenbrock #setting function to be optimized
-dimensions=5 
+dimensions=5
 bounds=[0]*dimensions #creating 5 dimensional bounds
 for i in range(dimensions):
     bounds[i]=[-5,5]
 p=50 #number of particles
-#the three particle swarm parameters:
+#the four particle swarm parameters:
+vmax=4
 w=0.6 
 c1=2.8
 c2=1.3
+tol=0.00000001
 
-particleswarm(f,bounds,p,w,c1,c2)
+particleswarm(f,bounds,p,w,c1,c2,vmax,tol)
+
 ```
 Produces the following outputs:
 ```

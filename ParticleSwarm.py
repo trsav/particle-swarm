@@ -28,6 +28,7 @@ def particleswarm(f,bounds,p,w,c1,c2,vmax,tol):
     c1          :adjustable parameter
     c2          :adjustable parameter
     vmax        :maximum particle velocity
+    tol         :tolerance for exit condition 
     
     OUTPUTS
     swarm_best  : coordinates of optimal solution, with regards to exit
@@ -60,7 +61,7 @@ def particleswarm(f,bounds,p,w,c1,c2,vmax,tol):
 
 
 f=Rosenbrock #setting function to be optimized
-dimensions=10
+dimensions=5
 bounds=[0]*dimensions #creating 5 dimensional bounds
 for i in range(dimensions):
     bounds[i]=[-5,5]
@@ -70,7 +71,7 @@ vmax=4
 w=0.6 
 c1=2.8
 c2=1.3
-tol=0.000000001
+tol=0.00000001
 
 particleswarm(f,bounds,p,w,c1,c2,vmax,tol)
                 
