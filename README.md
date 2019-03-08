@@ -46,7 +46,7 @@ Python 3.0 is required. The ParticleSwarmUtility.py file must be in the same dir
 With the ParticleSwarmUtility.py and ParticleSwarm.py files within the same directory.
 Running the following:
 ```
-f=Rosenbrock
+f=PSU.Rosenbrock
 
 dimensions=5
 bounds=[0]*dimensions #creating 5 dimensional bounds

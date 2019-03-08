@@ -61,6 +61,4 @@ def particleswarm(f,bounds,p,w,c1,c2,vmax,tol):
                 
                 
                 
-                
-                
     
