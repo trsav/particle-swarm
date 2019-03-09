@@ -1,10 +1,10 @@
 # Particle Swarm Optimization within Python
 
 ## Particle Swarm Background
-Particle Swarm optimization is first attributed by Kennedy, Eberhar and Shi in their 1995 paper 'Particle Swarm Optimization. It locates the minimum of a function why creating a number of 'particles'. These particles store their best position has been as well as also storing the global best position. 
+Particle Swarm optimization is first attributed by Kennedy, Eberhar and Shi in their 1995 paper 'Particle Swarm Optimization'. It locates the minimum of a function by creating a number of 'particles'. These particles store their best position as well as also storing the global best position. 
 It is this combination of local and global information that gives rise to 'swarm intelligence'.
 
-Within an iteration, a particle will update it's position slightly towards both the swarm best and it's personal best. With eventually the particles converging on the global minimum.
+Within an iteration, a particle will update it's position slightly towards both the swarm best and slightly towards it's personal best. With eventually the particles converging on the global minimum.
 
 ### Limitations of current implimentation
 
@@ -49,10 +49,12 @@ Running the following:
 f=PSU.Rosenbrock
 
 dimensions=5
+dimension_bounds=[-5,5]
 bounds=[0]*dimensions #creating 5 dimensional bounds
 for i in range(dimensions):
-    bounds[i]=[-5,5]
-p=5
+    bounds[i]=dimension_bounds
+
+p=50
 vmax=4 
 w=0.6 
 c1=2.8
@@ -64,8 +66,8 @@ particleswarm(f,bounds,p,w,c1,c2,vmax,tol)
 ```
 Produces the following outputs:
 ```
-Optimum at:  [0.99997687 0.99997492 0.99985836 0.99975199 0.99954017]
-Function at optimum:  1.2193992644178545e-06
+Optimum at:  [0.99999618 0.99997994 0.99998646 0.99995886 0.99992175]
+Function at optimum:  1.0972886797751607e-07
 
 ```
 

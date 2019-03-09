@@ -57,8 +57,22 @@ def particleswarm(f,bounds,p,w,c1,c2,vmax,tol):
 
 
                 
-                
-                
+f=PSU.Rosenbrock
+
+dimensions=5
+dimension_bounds=[-5,5]
+bounds=[0]*dimensions #creating 5 dimensional bounds
+for i in range(dimensions):
+    bounds[i]=dimension_bounds
+    
+p=60
+vmax=dimension_bounds[1]-dimension_bounds[0]
+w=0.6 
+c1=2.8
+c2=1.3
+tol=0.00000001
+
+particleswarm(f,bounds,p,w,c1,c2,vmax,tol)            
                 
                 
     
