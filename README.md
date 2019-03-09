@@ -11,7 +11,7 @@ Within an iteration, a particle will update it's position slightly towards both 
 Currently the algorithm is set to terminate when the difference in the value of the function evaluated at the swarm's best position changes less than a certain tolerance value. 
 This could be changed at a later date to a more 'clever' solution. 
 
-There are also three important parameters (w,c1,c2) that define how much a particle moves towards the swarm best and it's best. 
+There are also two important parameters (c1,c2) that define how much a particle moves towards the swarm best and it's best. 
 There has been much discussion over a 'standard' for these parameters (See Bratton, Kennedy: Defining a Standard for Particle Swarm Optimization (2007)) but in reality each problem will perform better with different conditions. 
 Optimizing these parameters takes the form of a meta-optimization problem.
 
@@ -31,7 +31,6 @@ Python 3.0 is required. The ParticleSwarmUtility.py file must be in the same dir
     f           :function to be optimized
     bounds      :bounds of each dimension in form [[x1,x2],[x3,x4]...]
     p           :number of particles
-    w           :adjustable parameter
     c1          :adjustable parameter
     c2          :adjustable parameter
     vmax        :maximum particle velocity
@@ -48,26 +47,25 @@ Running the following:
 ```
 f=PSU.Rosenbrock
 
-dimensions=5
+dimensions=6
 dimension_bounds=[-5,5]
 bounds=[0]*dimensions #creating 5 dimensional bounds
 for i in range(dimensions):
     bounds[i]=dimension_bounds
-
-p=50
-vmax=4 
-w=0.6 
+    
+p=60
+vmax=dimension_bounds[1]-dimension_bounds[0] 
 c1=2.8
 c2=1.3
 tol=0.00000001
 
-particleswarm(f,bounds,p,w,c1,c2,vmax,tol)
+particleswarm(f,bounds,p,c1,c2,vmax,tol)  
 
 ```
 Produces the following outputs:
 ```
-Optimum at:  [0.99999618 0.99997994 0.99998646 0.99995886 0.99992175]
-Function at optimum:  1.0972886797751607e-07
+Optimum at:  [0.99999671 0.99999961 1.00002709 1.00001927 1.00002912 1.00005238]
+ Function at optimum:  2.1769590272712514e-07
 
 ```
 

@@ -89,6 +89,9 @@ def withinbounds(bounds,particle_pos):
         elif particle_pos[i]>bounds[i][1]:
             inbounds=False
     return inbounds
+
+
+
     
                 
                 
