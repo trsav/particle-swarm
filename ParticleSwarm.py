@@ -40,7 +40,7 @@ def particleswarm(f,bounds,p,w,c1,c2,vmax,tol):
             particle_velocity[i,:]+=(c1*rp*(particle_best[i,:]-particle_pos[i,:]))
             particle_velocity[i,:]+=(c2*rg*(swarm_best[:]-particle_pos[i,:]))
             if particle_velocity[i].any() > vmax :
-                particle_velocity[i,:]=0
+                    particle_velocity[i,:]=vmax
             #all of the above is regarding updating the particle's velocity
             #with regards to various parameters (swarm_best, p_best etc..)
             particle_pos[i,:]+=particle_velocity[i,:] #updating position
