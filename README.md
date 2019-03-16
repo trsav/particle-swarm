@@ -6,20 +6,31 @@ It is this combination of local and global information that gives rise to 'swarm
 
 Within an iteration, a particle will update it's position slightly towards both the swarm best and slightly towards it's personal best. With eventually the particles converging on the global minimum.
 
-### Limitations of current implimentation
+### Current implimentation
 
 Currently the algorithm is set to terminate when the difference in the value of the function evaluated at the swarm's best position changes less than a certain tolerance value. 
 This could be changed at a later date to a more 'clever' solution. 
 
+There are important aspects within this code; such as limiting a particle's velocity to vmax, or setting a particle's velocity to 0 if it goes out of bounds, that have been implimented.
+
 There are also two important parameters (c1,c2) that define how much a particle moves towards the swarm best and it's best. 
-There has been much discussion over a 'standard' for these parameters (See Bratton, Kennedy: Defining a Standard for Particle Swarm Optimization (2007)) but in reality each problem will perform better with different conditions. 
+There has been much discussion over a 'standard' for these parameters (See Bratton, Kennedy: Defining a Standard for Particle Swarm Optimization (2007)) but in reality each problem will perform better with different conditions.  Here they are set to 2.3 and 1.8 respectively, as suggested by Bratton and Kennedy.
 Optimizing these parameters takes the form of a meta-optimization problem.
 
-The 'Topology' of a particle swarm also bears an influence on how the swarm behaves. Here, all particles are 'connected' with each other through their knowledge of the swarm best. A common adaptation to this is that the swarm best is replaced with the the best position of itself and it's two neighbours. It results in a slower convergence, but allows the swarm to not terminate prematurely. 
+The 'Topology' of a particle swarm also bears an influence on how the swarm behaves. Here, each particle has knowledge about it's two neighbour's positions. This is then that particle's 'global best'. This is known as the ring topology, and was initially deemed to converge too slowly. However it stops the particles becoming too focused on the global best point and converging prematurely. Through this shared knowledge the particles are more likely to find the global optimum.
+
 
  <img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/PSOtopology.png" width="400"> Bratton, Kennedy (2007)
 
-It is something that hopefully will be implimented soon here.
+ I found that even with this topology, the search for the optimum sometimes ground to a halt. I put this down to all the particles becoming too close and their velocities becoming too low.
+
+ To solve this problem, I simply gave all particles a random velocity every 1000 iterations. Effectively causing a 'conflict' within the swarm and forcing all the particles apart. This seemed to solve the problem fairly effectively. 
+
+ ### Limitations
+
+ Recently (~2010) there has been an effort to simplify ever more complicated particle swarm algorithms, with good reason. There is an obvious trade off for computing time and effectiveness of an algorithm, and for some cases the loss in performance is made up for in the gain in computational time. 
+ For this reason I've decided to stick to the commonly used ring topology, with the implimentations described above.
+
 
 ### Prerequisites
 
@@ -46,26 +57,26 @@ With the ParticleSwarmUtility.py and ParticleSwarm.py files within the same dire
 Running the following:
 ```
 f=PSU.Rosenbrock
-
-dimensions=6
+dimensions=10
 dimension_bounds=[-5,5]
 bounds=[0]*dimensions #creating 5 dimensional bounds
 for i in range(dimensions):
     bounds[i]=dimension_bounds
     
-p=60
-vmax=dimension_bounds[1]-dimension_bounds[0] 
-c1=2.8
-c2=1.3
-tol=0.00000001
+p=30
+vmax=(dimension_bounds[1]-dimension_bounds[0])
+c1=2.8 #shouldn't really change
+c2=1.3 #shouldn't really change
+tol=0.00000000000001
 
-particleswarm(f,bounds,p,c1,c2,vmax,tol)  
+particleswarm(f,bounds,p,c1,c2,vmax,tol)
 
 ```
 Produces the following outputs:
 ```
-Optimum at:  [0.99999671 0.99999961 1.00002709 1.00001927 1.00002912 1.00005238]
- Function at optimum:  2.1769590272712514e-07
+Optimum at:  [1.00000132 0.99997581 0.99995583 0.99989929 0.99977618 0.99953611
+ 0.99906464 0.99812545 0.99625688 0.99248657]
+ Function at optimum:  1.9022223352164056e-05
 
 ```
 
