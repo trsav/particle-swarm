@@ -80,8 +80,8 @@ def initiation(f,bounds,p):
         local_vals[1]=particle_pos_val[j-1]
         local_vals[2]=particle_pos_val[j]
         min_index=int(np.argmin(local_vals))
-        local_best[j]=particle_pos[min_index+j-2][:]
-        local_best_fitness[j]=f(local_best[j])
+        local_best[j-1]=particle_pos[min_index+j-2][:]
+        local_best_fitness[j-1]=f(local_best[j-1])
 
     swarm_best=particle_pos[np.argmin(particle_pos_val)]#getting the lowest particle value
     particle_best=copy.deepcopy(particle_pos)#setting all particles current positions to best
@@ -109,21 +109,6 @@ def withinbounds(bounds,particle_pos):
             inbounds=False
     return inbounds
 
-def trajplot(f_store):
-    '''INPUTS:
-        f : function for plot(used for contour)
-        bounds :bounds over which contour is produced
-        f_store : trajectory of function value
-    OUTPUTS: 
-        plot of function value against iteration
-    '''
-    it=np.linspace(0,len(f_store),len(f_store))
-    plt.figure()
-    plt.plot(it,f_store)
-    plt.xlabel('Iterations')
-    plt.ylabel('Function Value')
-    plt.show()
-    return
 
 
 
