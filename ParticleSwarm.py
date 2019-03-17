@@ -28,6 +28,8 @@ def particleswarm(f,bounds,p,c1,c2,vmax,tol):
     swarm_best  : coordinates of optimal solution, with regards to exit
                   conditions
     '''
+    print('Currently placing particles and giving them random \
+    velocities...')
     d,particle_pos, particle_best, swarm_best, particle_velocity, \
         local_best, local_best_fitness, pos_val \
     = PSU.initiation(f,bounds,p) #initializing various arrays
@@ -35,6 +37,7 @@ def particleswarm(f,bounds,p,c1,c2,vmax,tol):
     c3=c1+c2
     K=2/(abs(2-c3-np.sqrt((c3**2)-(4*c3)))) #creating velocity weighting factor
     it_count=0
+    f_store=[]
     while abs(f(old_swarm_best)-f(swarm_best))>tol: #exit condition 
 
         it_count+=1 
@@ -42,11 +45,10 @@ def particleswarm(f,bounds,p,c1,c2,vmax,tol):
                         #create 'conflict' within the swarm and 
                         #give all particles random velocities
             print('Particles are too friendly! Creating conflict...')
-            print('Current function value: ',f(swarm_best))
             for j in range(p): #iterating ovre the number of particles
-                particle_velocity[j]=[rnd.uniform(-abs(bounds[i][1]-bounds[i][0])\
-                    ,abs(bounds[i][1]-bounds[i][0])) for i in range(d)]
-                    #creating random velocity values for each dimension
+                particle_velocity[j]+=[(rnd.uniform(-abs(bounds[i][1]-bounds[i][0])\
+                    ,abs(bounds[i][1]-bounds[i][0])))*0.75 for i in range(d)]
+                    #adding random velocity values for each dimension
             it_count=0 #reset iteration count
         
         for i in range(p): #iterates over each particle
@@ -78,27 +80,30 @@ def particleswarm(f,bounds,p,c1,c2,vmax,tol):
             if particle_fitness < pos_val[i]:
                 particle_best[i,:]=particle_pos[i,:] #checking if new best
                 pos_val[i]=particle_fitness
-                if particle_fitness < f(swarm_best): 
+                f_swarm_best=f(swarm_best)
+                if particle_fitness < f_swarm_best: 
+                    f_store.append(f_swarm_best)
                     old_swarm_best=swarm_best[:]
                     swarm_best=copy.deepcopy(particle_best[i,:]) 
-                    if it_count%100==0: #displays current best fitness every 100 iterations
+                    if it_count%10==0: #displays current best fitness every 100 iterations
                         print('current function value: ',f(swarm_best))
+    PSU.trajplot(f_store)
     return print('Optimum at: ',swarm_best,'\n','Function at optimum: ',f(swarm_best)) 
 
 
                 
 f=PSU.Rosenbrock
-dimensions=10
+dimensions=5
 dimension_bounds=[-5,5]
 bounds=[0]*dimensions #creating 5 dimensional bounds
 for i in range(dimensions):
     bounds[i]=dimension_bounds
     
-p=30
+p=60 #shouldn't really change 
 vmax=(dimension_bounds[1]-dimension_bounds[0])
 c1=2.8 #shouldn't really change
 c2=1.3 #shouldn't really change
-tol=0.00000000000001
+tol=0.00000000001
 
 particleswarm(f,bounds,p,c1,c2,vmax,tol)            
                 

@@ -9,6 +9,7 @@ import numpy as np
 import copy
 import numpy.random as rnd
 import time
+import matplotlib.pyplot as plt
 
 
 def Rosenbrock(X):
@@ -107,6 +108,22 @@ def withinbounds(bounds,particle_pos):
         elif particle_pos[i]>bounds[i][1]:
             inbounds=False
     return inbounds
+
+def trajplot(f_store):
+    '''INPUTS:
+        f : function for plot(used for contour)
+        bounds :bounds over which contour is produced
+        f_store : trajectory of function value
+    OUTPUTS: 
+        plot of function value against iteration
+    '''
+    it=np.linspace(0,len(f_store),len(f_store))
+    plt.figure()
+    plt.plot(it,f_store)
+    plt.xlabel('Iterations')
+    plt.ylabel('Function Value')
+    plt.show()
+    return
 
 
 

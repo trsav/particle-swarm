@@ -24,7 +24,7 @@ The 'Topology' of a particle swarm also bears an influence on how the swarm beha
 
  I found that even with this topology, the search for the optimum sometimes ground to a halt. I put this down to all the particles becoming too close and their velocities becoming too low.
 
- To solve this problem, I simply gave all particles a random velocity every 1000 iterations. Effectively causing a 'conflict' within the swarm and forcing all the particles apart. This seemed to solve the problem fairly effectively. 
+ To solve this problem, I simply added a random velocity to all particles every 1000 iterations. Effectively causing a 'conflict' within the swarm and pushing them all along a bit. This seemed to solve the problem fairly effectively. 
 
  ### Limitations
 
