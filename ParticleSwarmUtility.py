@@ -25,18 +25,53 @@ def Rosenbrock(X):
     f = sum( 100.0*(X[i+1]-X[i]**2)**2 + (1-X[i])**2 for i in range(0,len(X)-1) )
     return f
 
-def Sphere(X):
+def StyblinskiTang(X):
     '''INPUTS
-    X: arguments of the Sphere Function
+    X: arguments of the Styblinski-Tang Function
     OUTPUTS
-    f : evaluation of the Sphere function given the inputs
+    f : evaluation of the Styblinski-Tang function given the inputs
     
-    DOMAIN         : [-5.12,5.12]
+    DOMAIN         : [-5,5]
     DIMENSIONS     : any
-    GLOBAL MINIMUM : f(x)=0 x=[0,...,0] 
-'''
-    f=sum(X[i]**2 for i in range(0,len(X)))
-    return f
+    GLOBAL MINIMUM : f(x)=(-39.166*d) x=[-2.9035,...,-2.9035] 
+    '''
+    f_sum=sum((X[i]**4)-(16*X[i]**2)+(5*X[i]) for i in range(len(X)))
+    return f_sum/2
+
+def Ackley(x):
+    '''
+    INPUTS
+    x : arguments of the function Ackley
+    Output
+    f : evaluation of the Ackley function given the inputs
+    
+    DOMAIN           : [-32,32]
+    DIMENSIONS       : any
+    GLOBAL MINIMUM   : f(x)=0 x=[0...0]
+    '''
+    d=len(x)
+    a=20
+    b=0.2
+    c=np.pi*2
+    sum1=sum(x[i]**2 for i in range(d))
+    sum1=(-a)*np.exp(((-b)*np.sqrt(sum1/d)))
+    sum2=sum(np.cos(c*x[i]) for i in range(d))
+    sum2=np.exp((sum2/d))
+    return sum1-sum2+a+np.exp(1)
+
+
+def local_best_get(particle_pos,particle_pos_val,p):
+    local_best=[0]*p #creating empty local best list
+    for j in range(p):  #finding the best particle in each neighbourhood 
+                        #and storing it in 'local_best'
+        local_vals=np.zeros(3)
+        local_vals[0]=particle_pos_val[j-2]
+        local_vals[1]=particle_pos_val[j-1]
+        local_vals[2]=particle_pos_val[j]
+        min_index=int(np.argmin(local_vals))
+        local_best[j-1]=particle_pos[min_index+j-2][:]
+    return np.array(local_best)
+
 
 
 
@@ -71,23 +106,13 @@ def initiation(f,bounds,p):
                     ,abs(bounds[i][1]-bounds[i][0])) for i in range(d)]
                     #creating random velocity values for each dimension
 
-    local_best=[0]*p #creating empty local best list
-    local_best_fitness=local_best[:]
-    for j in range(p):  #finding the best particle in each neighbourhood 
-                        #and storing it in 'local_best'
-        local_vals=np.zeros(3)
-        local_vals[0]=particle_pos_val[j-2]
-        local_vals[1]=particle_pos_val[j-1]
-        local_vals[2]=particle_pos_val[j]
-        min_index=int(np.argmin(local_vals))
-        local_best[j-1]=particle_pos[min_index+j-2][:]
-        local_best_fitness[j-1]=f(local_best[j-1])
+    local_best=local_best_get(particle_pos,particle_pos_val,p)
 
     swarm_best=particle_pos[np.argmin(particle_pos_val)]#getting the lowest particle value
     particle_best=copy.deepcopy(particle_pos)#setting all particles current positions to best
     return d,np.array(particle_pos), np.array(particle_best), \
                  np.array(swarm_best), np.array(particle_velocity), np.array(local_best), \
-                     np.array(local_best_fitness),np.array(particle_pos_val)
+                     np.array(particle_pos_val)
         
 def withinbounds(bounds,particle_pos):
     '''
@@ -111,8 +136,6 @@ def withinbounds(bounds,particle_pos):
 
 
 
-
-    
                 
                 
                 

@@ -1,5 +1,7 @@
 # Particle Swarm Optimization within Python
 
+<img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/movie.gif" width="400"> <img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/movie2.gif" width="400"> 
+
 ## Particle Swarm Background
 Particle Swarm optimization is first attributed by Kennedy, Eberhar and Shi in their 1995 paper 'Particle Swarm Optimization'. It locates the minimum of a function by creating a number of 'particles'. These particles store their best position as well as also storing the global best position. 
 It is this combination of local and global information that gives rise to 'swarm intelligence'.
