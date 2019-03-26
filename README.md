@@ -1,6 +1,6 @@
 # Particle Swarm Optimization within Python
 
-<img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/movie3.gif" width="400"> <img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/movie2.gif" width="400"> 
+<img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/movie.gif" width="400"> <img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/movie2.gif" width="400"> 
 
 
 ## Particle Swarm Background
