@@ -64,9 +64,7 @@ def particleswarm(f,bounds,p,c1,c2,vmax,tol):
             #with regards to various parameters (local_best, p_best etc..)
             particle_pos[i,:]+=particle_velocity[i,:] #updating position
             
-            if PSU.withinbounds(bounds,particle_pos[i])==False: #if particle is out of bounds
-                particle_velocity[i,:]=0
-
+            PSU.withinbounds(bounds,particle_pos[i]) #if particle is out of bounds
 
             particle_fitness=f(particle_pos[i]) 
         

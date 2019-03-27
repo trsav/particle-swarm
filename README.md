@@ -14,7 +14,7 @@ Within an iteration, a particle will update it's position slightly towards both 
 Currently the algorithm is set to terminate when the difference in the value of the function evaluated at the swarm's best position changes less than a certain tolerance value. 
 This could be changed at a later date to a more 'clever' solution. 
 
-There are important aspects within this code; such as limiting a particle's velocity to vmax, or setting a particle's velocity to 0 if it goes out of bounds, that have been implimented.
+There are important aspects within this code; such as limiting a particle's velocity to vmax, or if a particle exits the bounds it gets contrained to the edge, that have been implimented.
 
 There are also two important parameters (c1,c2) that define how much a particle moves towards the swarm best and it's best. 
 There has been much discussion over a 'standard' for these parameters (See Bratton, Kennedy: Defining a Standard for Particle Swarm Optimization (2007)) but in reality each problem will perform better with different conditions.  Here they are set to 2.3 and 1.8 respectively, as suggested by Bratton and Kennedy.
@@ -33,6 +33,12 @@ The 'Topology' of a particle swarm also bears an influence on how the swarm beha
 
  Recently (~2010) there has been an effort to simplify ever more complicated particle swarm algorithms, with good reason. There is an obvious trade off for computing time and effectiveness of an algorithm, and for some cases the loss in performance is made up for in the gain in computational time. 
  For this reason I've decided to stick to the commonly used ring topology, with the implimentations described above.
+
+ ### Effect of swarm conflict and topologies
+
+ <img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/Graph.PNG" width="400"><img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/GraphZoom.PNG" width="400">
+ The above figure shows how whilst using a global topology initially provides faster convergence, it stagnates very quickly. A local topology, whilst initially slower allows the particles to converge on the global minimum. 
+ The effect of the added conflict is also clear, ensuring the particles do not become complacent and allowing them to reach the global minimum albeit at a slower pace.
 
 
 ### Prerequisites

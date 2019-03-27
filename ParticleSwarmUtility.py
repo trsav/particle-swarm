@@ -118,21 +118,20 @@ def withinbounds(bounds,particle_pos):
     '''
     DESCRIPTION: 
         Checks whether a particle's position is within the bounds of the problem 
+        and contraints particles within bounds
         
     INPUTS
     bounds      :bounds of problem in form [[x1,x2],[x3,x4]...]
     particle_pos:coordinates of a particle e.g [p1,p2,p3...]
     
-    OUTPUTS
-    inbounds    : True if particle is within bounds and false if outside
+ 
     '''
-    inbounds=True
     for i in range(len(bounds)):
-        if particle_pos[i]<bounds[i][0]:
-            inbounds=False
-        elif particle_pos[i]>bounds[i][1]:
-            inbounds=False
-    return inbounds
+        if particle_pos[i]<bounds[i][0]: #if particle is less than lower bound
+            particle_pos[i]=bounds[i][0]
+        elif particle_pos[i]>bounds[i][1]: #if particle is more than higher bound
+            particle_pos[i]=bounds[i][1]
+    return
 
 
 
