@@ -37,6 +37,7 @@ The 'Topology' of a particle swarm also bears an influence on how the swarm beha
  ### Effect of swarm conflict and topologies
 
  <img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/Graph.PNG" width="400"><img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/GraphZoom.PNG" width="400">
+ 
  The above figure shows how whilst using a global topology initially provides faster convergence, it stagnates very quickly. A local topology, whilst initially slower allows the particles to converge on the global minimum. 
  The effect of the added conflict is also clear, ensuring the particles do not become complacent and allowing them to reach the global minimum albeit at a slower pace.
 
