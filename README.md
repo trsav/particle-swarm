@@ -10,6 +10,10 @@ It is this combination of local and global information that gives rise to 'swarm
 
 Within an iteration, a particle will update it's position slightly towards both the swarm best and slightly towards it's personal best. With eventually the particles converging on the global minimum.
 
+<p align="center">
+<img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/Sty.gif" width="450">
+</p>
+
 ### Current implimentation
 
 Currently the algorithm is set to terminate when the difference in the value of the function evaluated at the swarm's best position changes less than a certain tolerance value. 
@@ -29,9 +33,7 @@ The 'Topology' of a particle swarm also bears an influence on how the swarm beha
 
  To solve this problem, I simply added a random velocity to all particles every 1000 iterations. Effectively causing a 'conflict' within the swarm and pushing them all along a bit. This seemed to solve the problem fairly effectively. 
 
-<p align="center">
-<img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/Sty.gif" width="450">
-</p>
+
 
 ### Limitations
 Recently (~2010) there has been an effort to simplify ever more complicated particle swarm algorithms, with good reason. There is an obvious trade off for computing time and effectiveness of an algorithm, and for some cases the loss in performance is made up for in the gain in computational time. 
