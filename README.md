@@ -3,16 +3,15 @@
 <img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/movie.gif" width="300"> <img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/movie2.gif" width="300"> 
 </p>
 
-
+<img align="right" src="https://github.com/TomRSavage/ParticleSwarm/blob/master/Sty.gif" width="450">
 ## Particle Swarm Background
 Particle Swarm optimization is first attributed by Kennedy, Eberhar and Shi in their 1995 paper 'Particle Swarm Optimization'. It locates the minimum of a function by creating a number of 'particles'. These particles store their best position as well as also storing the global best position. 
 It is this combination of local and global information that gives rise to 'swarm intelligence'.
 
 Within an iteration, a particle will update it's position slightly towards both the swarm best and slightly towards it's personal best. With eventually the particles converging on the global minimum.
 
-<p align="center">
-<img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/Sty.gif" width="450">
-</p>
+
+
 
 ### Current implimentation
 
