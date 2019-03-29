@@ -12,7 +12,6 @@ Within an iteration, a particle will update it's position slightly towards both 
 ### Current implimentation
 
 Currently the algorithm is set to terminate when the difference in the value of the function evaluated at the swarm's best position changes less than a certain tolerance value. 
-This could be changed at a later date to a more 'clever' solution. 
 
 There are important aspects within this code; such as limiting a particle's velocity to vmax, or if a particle exits the bounds it gets contrained to the edge, that have been implimented.
 
@@ -28,6 +27,8 @@ The 'Topology' of a particle swarm also bears an influence on how the swarm beha
  I found that even with this topology, the search for the optimum sometimes ground to a halt. I put this down to all the particles becoming too close and their velocities becoming too low.
 
  To solve this problem, I simply added a random velocity to all particles every 1000 iterations. Effectively causing a 'conflict' within the swarm and pushing them all along a bit. This seemed to solve the problem fairly effectively. 
+
+ <img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/Sty.gif" width="400"> <img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/StyFunc.gif" width="400">
 
  ### Limitations
 
