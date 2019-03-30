@@ -25,11 +25,11 @@ There are also two important parameters (c1,c2) that define how much a particle 
 There has been much discussion over a 'standard' for these parameters (See Bratton, Kennedy: Defining a Standard for Particle Swarm Optimization (2007)) but in reality each problem will perform better with different conditions.  Here they are set to 2.3 and 1.8 respectively, as suggested by Bratton and Kennedy.
 Optimizing these parameters takes the form of a meta-optimization problem.
 
+ <img align="left" src="https://github.com/TomRSavage/ParticleSwarm/blob/master/PSOtopology.png" width="400">
+ 
+
 The 'Topology' of a particle swarm also bears an influence on how the swarm behaves. Here, each particle has knowledge about it's two neighbour's positions. This is then that particle's 'global best'. This is known as the ring topology, and was initially deemed to converge too slowly. However it stops the particles becoming too focused on the global best point and converging prematurely. Through this shared knowledge the particles are more likely to find the global optimum.
 
-<p align="center">
- <img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/PSOtopology.png" width="400"> Bratton, Kennedy (2007)
-</p>
  I found that even with this topology, the search for the optimum sometimes ground to a halt. I put this down to all the particles becoming too close and their velocities becoming too low.
 
  To solve this problem, I simply added a random velocity to all particles every 1000 iterations. Effectively causing a 'conflict' within the swarm and pushing them all along a bit. This seemed to solve the problem fairly effectively. 
