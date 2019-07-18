@@ -33,6 +33,7 @@ The 'Topology' of a particle swarm also bears an influence on how the swarm beha
  I found that even with this topology, the search for the optimum sometimes ground to a halt. I put this down to all the particles becoming too close and their velocities becoming too low.
 
  To solve this problem, I simply added a random velocity to all particles every 1000 iterations. Effectively causing a 'conflict' within the swarm and pushing them all along a bit. This seemed to solve the problem fairly effectively. 
+ Upon further research similar solutions have been implemented under the term 'craziness', also adding an extra stochastic element to stop the particles from stagnating. 
 
 
 
