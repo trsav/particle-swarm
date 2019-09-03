@@ -11,6 +11,31 @@ It is this combination of local and global information that gives rise to 'swarm
 
 Within an iteration, a particle will update it's position slightly towards both the swarm best and slightly towards it's personal best. With eventually the particles converging on the global minimum.
 
+Mathematically this position update is defined as follows: 
+<p align="center">
+<img src="https://latex.codecogs.com/gif.latex?\large&space;\large&space;v_i^{t&plus;1}=\omega&space;v_i^t&space;&plus;&space;\phi_br_b(x_{i_b}-x_i)&plus;\phi_gr_g(g_b-x_i)" title="\large \large v_i^{t+1}=\omega v_i^t + \phi_br_b(x_{i_b}-x_i)+\phi_gr_g(g_b-x_i)" />
+ </p>
+ <p align="center">
+<img src="https://latex.codecogs.com/gif.latex?\large&space;x_i^{t&plus;1}=x_i^t&plus;v_i^t" title="\large x_i^{t+1}=x_i^t+v_i^t" />
+</p>
+These equations become clear when presented in a simple 2 variable scenario: 
+<p align="center">
+<img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/PS1.png" width="400"> <img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/PS2.png" width="400">
+</p>
+
+Initially every particle is given a random velocity vi, and the function is evaluated for every particle. 
+Now each particle is aware of it's previous best position as well as the global best position. On the first iteration it's previous best position is obviously it's current position so this term doesn't come into play until the second iteration. 
+
+It's current velocity is first scaled by a factor of w in order to ensure particle velocities don't grow exponentially over each iteration.
+
+The term <img src="https://latex.codecogs.com/gif.latex?\phi_br_b(x_{i_b}-x_i)" title="\phi_br_b(x_{i_b}-x_i)" /> then represents the vector from the particles position, towards it's previous best position. It is scaled by a constant <img src="https://latex.codecogs.com/gif.latex?\phi_b" title="\phi_b" /> (Here I've sometimes referred to this as c1) and a random value <img src="https://latex.codecogs.com/gif.latex?r_b" title="r_b" /> between 0 and 1 (uniformly distributed). This random scaling provides the stochastic element of this optimization scheme.
+
+Likewise <img src="https://latex.codecogs.com/gif.latex?\phi_gr_g(g_b-x_i)" title="\phi_gr_g(g_b-x_i)" /> represents the vector from the particles position towards the swarms best position, again scaled by a constant <img src="https://latex.codecogs.com/gif.latex?\phi_g" title="\phi_g" /> and a random variable <img src="https://latex.codecogs.com/gif.latex?r_g" title="r_g" />. Varying these phi (or c) parameters effect how locally or globally the particle explores the search space. A higher value will provide a larger vector and therefore the particle will take into account that aspect more than another. 
+
+It's seen in the second graph the effect of lining up these vectors and then the final step of moving the particle to it's new position. 
+
+
+
 <img align="right" src="https://github.com/TomRSavage/ParticleSwarm/blob/master/Sty.gif" width="400">
 
 
