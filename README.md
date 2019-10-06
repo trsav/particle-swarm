@@ -9,7 +9,7 @@
 Particle Swarm optimization is first attributed by Kennedy, Eberhar and Shi in their 1995 paper 'Particle Swarm Optimization'. It locates the minimum of a function by creating a number of 'particles'. These particles store their best position as well as also storing the global best position. 
 It is this combination of local and global information that gives rise to 'swarm intelligence'.
 
-Within an iteration, a particle will update it's position slightly towards both the swarm best and slightly towards it's personal best. With eventually the particles converging on the global minimum.
+Within an iteration, a particle will update it's position slightly towards both the swarm best and slightly towards it's personal best. With eventually the particles converging on (hopefully) the global minimum.
 
 Mathematically this position update is defined as follows: 
 <p align="center">
@@ -24,7 +24,7 @@ These equations become clear when presented in a simple 2 variable scenario:
 </p>
 
 Initially every particle is given a random velocity vi, and the function is evaluated for every particle. 
-Now each particle is aware of it's previous best position as well as the global best position. On the first iteration it's previous best position is obviously it's current position so this term doesn't come into play until the second iteration. 
+Each particle is now 'aware' of it's previous best position as well as the global best position. On the first iteration it's previous best position is obviously it's current position so this term doesn't come into play until the second iteration. 
 
 It's current velocity is first scaled by a factor of w in order to ensure particle velocities don't grow exponentially over each iteration.
 
