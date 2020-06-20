@@ -12,12 +12,14 @@ It is this combination of local and global information that gives rise to 'swarm
 Within an iteration, a particle will update it's position slightly towards both the swarm best and slightly towards it's personal best. With eventually the particles converging on (hopefully) the global minimum.
 
 Mathematically this position update is defined as follows: 
-<p align="center">
-<img src="https://latex.codecogs.com/gif.latex?\large&space;\large&space;v_i^{t&plus;1}=\omega&space;v_i^t&space;&plus;&space;\phi_br_b(x_{i_b}-x_i)&plus;\phi_gr_g(g_b-x_i)" title="\large \large v_i^{t+1}=\omega v_i^t + \phi_br_b(x_{i_b}-x_i)+\phi_gr_g(g_b-x_i)" />
- </p>
+
  <p align="center">
-<img src="https://latex.codecogs.com/gif.latex?\large&space;x_i^{t&plus;1}=x_i^t&plus;v_i^t" title="\large x_i^{t+1}=x_i^t+v_i^t" />
-</p>
+   <img src="https://render.githubusercontent.com/render/math?math=v_i^{t %2B 1}=\omega v_i^t %2B \phi_br_b(x_{i_b}-x_i) %2B \phi_gr_g(g_b-x_i)">
+ </p>
+  <p align="center">
+   <img src="https://render.githubusercontent.com/render/math?math=x_i^{t %2B 1}=x_i^t %2B v_i^t">
+   </p>
+   
 These equations become clear when presented in a simple 2 variable scenario: 
 <p align="center">
 <img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/PS1.png" width="400"> <img src="https://github.com/TomRSavage/ParticleSwarm/blob/master/PS2.png" width="400">
