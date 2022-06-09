@@ -13,7 +13,7 @@ import ParticleSwarmUtility as PSU
  
 
 
-def particleswarm(f,bounds,p,c1,c2,vmax,tol):
+def particleswarm(f,bounds,p,c1,c2,vmax,tol, max_iter=1000):
     '''
     DESCRIPTION
     see https://en.wikipedia.org/wiki/Particle_swarm_optimization
@@ -26,6 +26,7 @@ def particleswarm(f,bounds,p,c1,c2,vmax,tol):
     c2          :adjustable parameter
     vmax        :maximum particle velocity
     tol         :tolerance for exit condition 
+    max_iter    :maximum number of iterations
     
     OUTPUTS
     swarm_best  : coordinates of optimal solution, with regards to exit
@@ -40,7 +41,7 @@ def particleswarm(f,bounds,p,c1,c2,vmax,tol):
     c3=c1+c2
     K=2/(abs(2-c3-np.sqrt((c3**2)-(4*c3)))) #creating velocity weighting factor
     it_count=0
-    while abs(f(old_swarm_best)-f(swarm_best))>tol: #exit condition 
+    while abs(f(old_swarm_best)-f(swarm_best))>tol and it_count<max_iter: #exit condition 
 
         it_count+=1 
         if it_count>1000: #every 1000 iterations...

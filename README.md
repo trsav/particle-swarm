@@ -44,7 +44,7 @@ It's seen in the second graph the effect of lining up these vectors and then the
 
 ### Current implimentation
 
-Currently the algorithm is set to terminate when the difference in the value of the function evaluated at the swarm's best position changes less than a certain tolerance value. 
+Currently the algorithm is set to terminate when 1) the difference in the value of the function evaluated at the swarm's best position changes less than a certain tolerance value OR 2) a maximum number of iterations has been reached. 
 
 There are important aspects within this code; such as limiting a particle's velocity to vmax, or if a particle exits the bounds it gets contrained to the edge, that have been implimented.
 
